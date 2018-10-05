@@ -19,7 +19,7 @@ public class FxApp extends Application {
 	public void start(Stage stage) throws Exception {
 
 		Pane root = new Pane(); // Root of the scene graph
-		
+		MainController controller = new MainController();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(FxApp.class.getResource("Main.fxml"));
 		try {
@@ -27,7 +27,8 @@ public class FxApp extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Scene scene = new Scene(root, 500, 500);
+		loader.setController(controller);
+		Scene scene = new Scene(root,1000,1000);
 
 		stage.setScene(scene);
 		stage.setTitle("NICE");
