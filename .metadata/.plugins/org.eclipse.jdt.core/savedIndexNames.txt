@@ -1,0 +1,2 @@
+INDEX VERSION 1.130+E:\Developement\workspaces\bioinformatics\.metadata\.plugins\org.eclipse.jdt.core
+1271784458.index
