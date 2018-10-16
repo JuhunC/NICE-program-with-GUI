@@ -25,41 +25,49 @@ public class ConfigBuilder {
 			return new ConfigBuilder(this);
 		}
 
-		public void setRPath(String rPath) throws Exception {
+		public Builder setRPath(String rPath) throws Exception {
 			if (exePathType == pathType.unset) {
 				this.executableString = rPath + " CMD BATCH --args";
 				this.exePathType = pathType.R;
+				return this;
 			} else {
 				throw new Exception("Excecutablepath already set");
 			}
 		}
 
-		public void setJavaPath(String javaPath) throws Exception {
+		public Builder setJavaPath(String javaPath) throws Exception {
 			if (exePathType == pathType.unset) {
 				this.executableString = javaPath;
 				this.exePathType = pathType.Java;
+				return this;
+
 			} else {
 				throw new Exception("Excecutablepath already set");
 			}
 		}
 
-		public void setROutputFile(String outputPath) throws Exception {
+		public Builder setROutputFile(String outputPath) throws Exception {
 			if (exePathType == pathType.R) {
 				executableString += " -- " + outputPath;
+				return this;
+
 			} else {
 				throw new Exception("ROutputfile cannot be defined");
 			}
 
 		}
 
-		public void addParameter(String parameter, String value) throws Exception {
+		public Builder addParameter(String parameter, String value) throws Exception {
 
 			switch (exePathType) {
 			case Java:
 				this.executableString = executableString + " -" + parameter + " " + value;
-				break;
+				return this;
+
 			case R:
 				this.executableString = executableString + " -" + parameter + "=" + value;
+				return this;
+
 			default:
 				throw new Exception("Please set Executablepath first");
 			}
