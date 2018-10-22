@@ -2,9 +2,16 @@ package application;
 
 public class ConfigBuilder {
 
+	private String executableString;
+	
 	private ConfigBuilder(Builder builder) {
+		this.executableString = builder.executableString;
 	}
 
+	public String toString() {
+		return this.executableString;
+	}
+	
 	public static Builder builder() {
 		return new Builder();
 	}
