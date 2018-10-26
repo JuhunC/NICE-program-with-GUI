@@ -141,14 +141,24 @@ public class MainController {
 		TextField mvalue_prior_sigma = new TextField();
 		TextField mvalue_prior_beta = new TextField();
 		//Buildconfig
-		/*
-		try {
-			ConfigBuilder.builder().setJavaPath(par1java.getText()).addParameter("", "").build();
+		try {	
+			//provisoric:
+			String out = "./test/";
+			String outFile ="inputMS.R";
+			//todo: define and add out (outputfolder) parameter
+			ConfigBuilder firstR = ConfigBuilder.builder().setRPath(rPathText).addParameter("snp", snpPathText).addParameter("pheno", phenoPathText).setROutputFile(outFile).build();
+			System.out.println(firstR);
+			//todo: define mvalue, pvalue_table
+			ConfigBuilder firstJava = ConfigBuilder.builder().setJavaPath(javaPathText).addParameter("input", out+outFile).addParameter("mvalue", "").addParameter("mvalue_method", this.mvalue_method.getText()).addParameter("mcmc_sample", mcmc_sample.getText()).addParameter("seed",this.seed.getText()).addParameter("mvalue_p_thres", this.mvalue_p_thres.getText()).addParameter("mvalue_prior_sigma", this.mvalue_prior_sigma.getText()).addParameter("mvalue_prior_beta", this.mvalue_prior_beta.getText()).addParameter("pvalue_table",out+"HanEskinPvalueTable.txt").addParameter("out", out+"posterior.txt").build();
+			System.out.println(firstJava);
+			//todo: define new out and outFile
+			ConfigBuilder secondR = ConfigBuilder.builder().setRPath(rPathText).addParameter("snp", snpPathText).addParameter("pheno", phenoPathText).addParameter("MvalueThreshold", this.mvalue_threshold.getText()).addParameter("Mvalue", out+"posterior.txt").addParameter("minGeneNumber", this.min_gene.getText()).addParameter("Pdefault", out+"p_ttest.txt").addParameter("out", out).addParameter("NICE", "./").setROutputFile("./NICE.R").build();
+			System.out.println(secondR);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			text.setText("Error: " + e.getMessage());
-		}*/
+			System.out.println("Error: " + e.getMessage());
+		}
 	}
 }
 
