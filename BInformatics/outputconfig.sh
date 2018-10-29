@@ -1,0 +1,3 @@
+default R path CMD BATCH --args -snp= -pheno= -out=./ -- inputMS.R
+C:\Program Files\Java\jdk1.8.0_151\jre\bin\java.exe -input ./inputMS.R -mvalue  -mvalue_method mcmc -mcmc_sample 1000000 -seed 0 -mvalue_p_thres 1.0 -mvalue_prior_sigma 0.05 -mvalue_prior_beta 15 -pvalue_table ./HanEskinPvalueTable.txt -out ./posterior.txt
+default R path CMD BATCH --args -snp= -pheno= -MvalueThreshold=0.5 -Mvalue=./posterior.txt -minGeneNumber=10 -Pdefault=./p_ttest.txt -out=./ -NICE=./ -- ./NICE.R
