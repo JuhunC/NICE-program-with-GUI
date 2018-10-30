@@ -1,10 +1,13 @@
 package application_gui;
 
+import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+
+import javax.swing.JFileChooser;
 
 import application.ConfigBuilder;
 import javafx.fxml.FXML;
@@ -37,6 +40,11 @@ public class MainController {
 	Button phenopathbtn = new Button();
 	@FXML
 	TextField phenopath = new TextField();
+
+	@FXML
+	Button inputmspathbtn = new Button();
+	@FXML
+	TextField inputmspath = new TextField();
 
 	@FXML
 	// textfields for pvalue data and metasoft data, I think some must be parsed
@@ -86,9 +94,9 @@ public class MainController {
 		 * FileChooser.ExtensionFilter("ALL", "*") );
 		 */
 		File file = fileChooser.showOpenDialog(fileStage);
-		// if (file != null) {
-		javapath.setText(file.getAbsolutePath());
-		// }
+		if (file != null) {
+			javapath.setText(file.getAbsolutePath());
+		}
 	}
 
 	@FXML
@@ -99,9 +107,9 @@ public class MainController {
 		configFileChooser();
 
 		File file = fileChooser.showOpenDialog(fileStage);
-		// if (file != null) {
-		rpath.setText(file.getAbsolutePath());
-		// }
+		if (file != null) {
+			rpath.setText(file.getAbsolutePath());
+		}
 	}
 
 	@FXML
@@ -111,9 +119,9 @@ public class MainController {
 		configFileChooser();
 
 		File file = fileChooser.showOpenDialog(fileStage);
-		// if (file != null) {
-		snppath.setText(file.getAbsolutePath());
-		// }
+		if (file != null) {
+			snppath.setText(file.getAbsolutePath());
+		}
 	}
 
 	@FXML
@@ -122,8 +130,28 @@ public class MainController {
 		// here should call generic function
 		configFileChooser();
 		File file = fileChooser.showOpenDialog(fileStage);
+		if (file != null) {
+			phenopath.setText(file.getAbsolutePath());
+		}
+	}
+
+	@FXML
+	private void chooseinputMSPath() {
+		JFileChooser chooser = new JFileChooser();
+		fileChooser.setTitle("Open work folder");
+		// here should call generic function
+		configFileChooser();
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		//
+		// disable the "All files" option.
+		//
+		chooser.setAcceptAllFileFilterUsed(false);
+		if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			inputmspath.setText(chooser.getSelectedFile().getAbsolutePath() + "\\");
+		}
+		// File file = fileChooser.showOpenDialog(fileStage);
 		// if (file != null) {
-		phenopath.setText(file.getAbsolutePath());
+		// inputmspath.setText(file.getAbsolutePath());
 		// }
 	}
 
@@ -147,29 +175,35 @@ public class MainController {
 		try {
 			// provisoric:
 			String out = "./";
-			String outFile = "inputMS.R";
+			String msFilenameR = "inputMS.R";
+			String msFilenameTxt = "inputMS.txt";
 			String secondOutputfile = "posterior.txt";
+			String workingDirectory = inputmspath.getText();
 
 			ConfigBuilder firstR = ConfigBuilder.builder().setRPath(rpath.getText())
-					.addParameter("snp", snppath.getText()).addParameter("pheno", phenopath.getText())
-					.addParameter("out", out).setROutputFile(outFile).build();
+					.addParameter("snp", snppath.getText())
+					.addParameter("pheno", phenopath.getText())
+					.addParameter("out", out).setROutputFile(workingDirectory + msFilenameR).build();
 			// todo: define mvalue, pvalue_table
 			ConfigBuilder firstJava = ConfigBuilder.builder().setJavaPath(javapath.getText())
-					.addParameter("input", out + outFile).addParameter("mvalue", "")
+					.addParameter("input", workingDirectory + msFilenameTxt)
+					.addParameter("jar", workingDirectory+"Metasoft.jar")
+					.addParameter("mvalue", "")
 					.addParameter("mvalue_method", this.mvalue_method.getText())
 					.addParameter("mcmc_sample", mcmc_sample.getText()).addParameter("seed", this.seed.getText())
 					.addParameter("mvalue_p_thres", this.mvalue_p_thres.getText())
 					.addParameter("mvalue_prior_sigma", this.mvalue_prior_sigma.getText())
 					.addParameter("mvalue_prior_beta", this.mvalue_prior_beta.getText())
-					.addParameter("pvalue_table", out + "HanEskinPvalueTable.txt")
-					.addParameter("out", out + secondOutputfile).build();
+					.addParameter("pvalue_table", workingDirectory + "HanEskinPvalueTable.txt")
+					.addParameter("out", workingDirectory + secondOutputfile).build();
 			ConfigBuilder secondR = ConfigBuilder.builder().setRPath(rpath.getText())
 					.addParameter("snp", snppath.getText()).addParameter("pheno", phenopath.getText())
 					.addParameter("MvalueThreshold", this.mvalue_threshold.getText())
-					.addParameter("Mvalue", out + secondOutputfile)
+					.addParameter("Mvalue", workingDirectory + secondOutputfile)
 					.addParameter("minGeneNumber", this.min_gene.getText())
-					.addParameter("Pdefault", out + "p_ttest.txt").addParameter("out", out).addParameter("NICE", "./")
-					.setROutputFile("./NICE.R").build();
+					.addParameter("Pdefault", workingDirectory + "p_ttest.txt").addParameter("out", out)
+					.addParameter("NICE", workingDirectory).setROutputFile(workingDirectory + "NICE.R")
+					.build();
 			System.out.println(firstR);
 			System.out.println(firstJava);
 			System.out.println(secondR);
@@ -210,5 +244,4 @@ public class MainController {
 			return null;
 		}
 	}
-
 }
