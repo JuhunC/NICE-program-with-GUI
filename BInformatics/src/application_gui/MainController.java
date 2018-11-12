@@ -82,7 +82,9 @@ public class MainController {
 
 	@FXML
 	ProgressBar progressbar = new ProgressBar();
-	
+
+	public String workingDirectory;
+
 	public MainController() {
 	}
 
@@ -192,7 +194,7 @@ public class MainController {
 			String msFilenameR = "inputMS.R";
 			String msFilenameTxt = "inputMS.txt";
 			String secondOutputfile = "posterior.txt";
-			String workingDirectory = inputmspath.getText();
+			workingDirectory = inputmspath.getText();
 
 			ConfigBuilder firstR = ConfigBuilder.builder().setRPath(rpath.getText())
 					.addParameter("snp", snppath.getText()).addParameter("pheno", phenopath.getText())
@@ -228,32 +230,31 @@ public class MainController {
 			e.printStackTrace();
 			System.out.println("Error: " + e.getMessage());
 		}
+		runExecution(1);
 	}
 
-	private void runExecution() {
+	private void runExecution(int i) {
 		ProgramExecutor programExecutor = new ProgramExecutor(this);
-		programExecutor.setExecutionphase(0);
+		programExecutor.setExecutionphase(i);
 		programExecutor.start();
-	}
-
-	public void setProgress(int i) {
 	}
 
 	@FXML
 	private void runScript2() {
-
+		runExecution(2);
 	}
 
 	@FXML
 	private void runScript3() {
-
+		runExecution(3);
 	}
 
 	public void setStatusMessage(String statusMessage) {
-
+		updateText.setText(statusMessage);
 	}
-	private void updateProgressBar(double d) {
-		//Must be between 0 and 1
+
+	public void updateProgressBar(double d) {
+		// Must be between 0 and 1
 		progressbar.setProgress(d);
 	}
 
