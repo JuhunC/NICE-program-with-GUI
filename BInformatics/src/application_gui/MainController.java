@@ -10,6 +10,7 @@ import java.nio.file.StandardOpenOption;
 import javax.swing.JFileChooser;
 
 import application.ConfigBuilder;
+import application.ProgramExecutor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -218,7 +219,21 @@ public class MainController {
 			System.out.println("Error: " + e.getMessage());
 		}
 	}
+	
+	private void runExecution() {
+		ProgramExecutor programExecutor = new ProgramExecutor(this);
+		programExecutor.setExecutionphase(i);
+		programExecutor.start();
+	}
+	
+	public void setProgress(int i) {
+		
+	}
 
+	public void setStatusMessage(String statusMessage) {
+		
+	}
+	
 	private static String javaExe() {
 		final String JAVA_HOME = System.getProperty("java.home");
 		final File BIN = new File(JAVA_HOME, "bin");
