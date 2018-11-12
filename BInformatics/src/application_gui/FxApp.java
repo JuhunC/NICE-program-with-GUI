@@ -29,10 +29,10 @@ public class FxApp extends Application {
 			e.printStackTrace();
 		}
 		loader.setController(controller);
-		Scene scene = new Scene(root,1000,1000);
+		Scene scene = new Scene(root);
 
-		stage.setScene(scene);
-		stage.setTitle("NICE");
+		stage.setScene(scene);	
+        stage.setTitle("NICE");
 		stage.setResizable(false);
 		stage.show();
 	}

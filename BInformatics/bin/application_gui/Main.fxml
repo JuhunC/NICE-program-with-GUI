@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application_gui.MainController">
+<AnchorPane prefHeight="774.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application_gui.MainController">
    <children>
       <Button id="btn" fx:id="javapathbtn" layoutX="276.0" layoutY="123.0" mnemonicParsing="false" onAction="#chooseJavaPath" prefHeight="31.0" prefWidth="118.0" text="Choose Java path" />
       <Label fx:id="text" layoutX="11.0" layoutY="14.0" prefHeight="90.0" prefWidth="816.0" text="NICE" textFill="RED">
@@ -29,9 +29,9 @@
       </Label>
       <Label layoutX="11.0" layoutY="313.0" text="pheno: path pf phenotype file" />
       <Button id="btn" fx:id="phenopathbtn" layoutX="273.0" layoutY="308.0" mnemonicParsing="false" onAction="#choosePhenoPath" prefHeight="23.0" prefWidth="117.0" text="Choose pheno " />
-      <Button fx:id="runbtn" layoutX="680.0" layoutY="601.0" mnemonicParsing="false" onAction="#runScript" prefHeight="66.0" prefWidth="131.0" text="Run script">
+      <Button fx:id="runbtn1" layoutX="120.0" layoutY="586.0" mnemonicParsing="false" onAction="#runScript1" prefHeight="66.0" prefWidth="131.0" text="Run first line">
          <font>
-            <Font size="18.0" />
+            <Font size="14.0" />
          </font></Button>
       <TextField fx:id="min_gene" layoutX="277.0" layoutY="384.0" prefHeight="23.0" prefWidth="118.0" text="10" />
       <Label layoutX="11.0" layoutY="388.0" prefHeight="15.0" prefWidth="257.0" text=" Minimum number of genes (minimum 10) " />
@@ -58,5 +58,18 @@
       <Button id="btn" fx:id="inputmspathbtn" layoutX="273.0" layoutY="346.0" mnemonicParsing="false" onAction="#chooseinputMSPath" prefHeight="23.0" prefWidth="117.0" text="Choose folder" />
       <Label layoutX="11.0" layoutY="351.0" text="Working Directory" />
       <TextField fx:id="inputmspath" layoutX="416.0" layoutY="349.0" prefHeight="23.0" prefWidth="392.0" />
+      <Button fx:id="runbtn2" layoutX="351.0" layoutY="586.0" mnemonicParsing="false" onAction="#runScript2" prefHeight="66.0" prefWidth="131.0" text="Run second line">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="runbtn3" layoutX="585.0" layoutY="586.0" mnemonicParsing="false" onAction="#runScript3" prefHeight="66.0" prefWidth="131.0" text="Run third line">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <CheckBox fx:id="checkbox" layoutX="122.0" layoutY="652.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="269.0" text="Run next after finishing" />
+      <ProgressBar layoutX="122.0" layoutY="692.0" prefHeight="18.0" prefWidth="595.0" progress="0.0" />
+      <Label fx:id="updateText" layoutX="124.0" layoutY="723.0" prefHeight="15.0" prefWidth="595.0" text="No script running" />
    </children>
 </AnchorPane>

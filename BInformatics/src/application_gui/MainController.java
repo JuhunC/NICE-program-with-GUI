@@ -1,6 +1,6 @@
 package application_gui;
 
-import java.awt.Component;
+import java.awt.Checkbox;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,6 +12,8 @@ import javax.swing.JFileChooser;
 import application.ConfigBuilder;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -67,8 +69,16 @@ public class MainController {
 	@FXML
 	TextField mvalue_prior_beta = new TextField();
 	@FXML
-	Button runbtn = new Button();
-
+	Button runbtn1 = new Button();
+	@FXML
+	Button runbtn2 = new Button();
+	@FXML
+	Button runbtn3 = new Button();
+	@FXML
+	Label updateText = new Label();
+	@FXML
+	CheckBox checkbox = new CheckBox();
+	
 	public MainController() {
 	}
 
@@ -156,7 +166,7 @@ public class MainController {
 	}
 
 	@FXML
-	private void runScript() {
+	private void runScript1() {
 		// Gettext from these
 		/*
 		 * TextField rpath = new TextField(); TextField javapath = new TextField();
@@ -217,6 +227,14 @@ public class MainController {
 			e.printStackTrace();
 			System.out.println("Error: " + e.getMessage());
 		}
+	}
+	@FXML
+	private void runScript2() {
+		
+	}
+	@FXML
+	private void runScript3() {
+			
 	}
 
 	private static String javaExe() {
