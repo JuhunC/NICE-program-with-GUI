@@ -1,6 +1,5 @@
 package application_gui;
 
-import java.awt.Checkbox;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -80,6 +80,9 @@ public class MainController {
 	@FXML
 	CheckBox checkbox = new CheckBox();
 
+	@FXML
+	ProgressBar progressbar = new ProgressBar();
+	
 	public MainController() {
 	}
 
@@ -248,6 +251,10 @@ public class MainController {
 
 	public void setStatusMessage(String statusMessage) {
 
+	}
+	private void updateProgressBar(double d) {
+		//Must be between 0 and 1
+		progressbar.setProgress(d);
 	}
 
 	private static String javaExe() {
