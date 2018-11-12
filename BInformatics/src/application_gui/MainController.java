@@ -1,6 +1,6 @@
 package application_gui;
 
-import java.awt.Component;
+import java.awt.Checkbox;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,6 +13,8 @@ import application.ConfigBuilder;
 import application.ProgramExecutor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -68,7 +70,15 @@ public class MainController {
 	@FXML
 	TextField mvalue_prior_beta = new TextField();
 	@FXML
-	Button runbtn = new Button();
+	Button runbtn1 = new Button();
+	@FXML
+	Button runbtn2 = new Button();
+	@FXML
+	Button runbtn3 = new Button();
+	@FXML
+	Label updateText = new Label();
+	@FXML
+	CheckBox checkbox = new CheckBox();
 
 	public MainController() {
 	}
@@ -157,7 +167,7 @@ public class MainController {
 	}
 
 	@FXML
-	private void runScript() {
+	private void runScript1() {
 		// Gettext from these
 		/*
 		 * TextField rpath = new TextField(); TextField javapath = new TextField();
@@ -182,14 +192,12 @@ public class MainController {
 			String workingDirectory = inputmspath.getText();
 
 			ConfigBuilder firstR = ConfigBuilder.builder().setRPath(rpath.getText())
-					.addParameter("snp", snppath.getText())
-					.addParameter("pheno", phenopath.getText())
+					.addParameter("snp", snppath.getText()).addParameter("pheno", phenopath.getText())
 					.addParameter("out", out).setROutputFile(workingDirectory + msFilenameR).build();
 			// todo: define mvalue, pvalue_table
 			ConfigBuilder firstJava = ConfigBuilder.builder().setJavaPath(javapath.getText())
 					.addParameter("input", workingDirectory + msFilenameTxt)
-					.addParameter("jar", workingDirectory+"Metasoft.jar")
-					.addParameter("mvalue", "")
+					.addParameter("jar", workingDirectory + "Metasoft.jar").addParameter("mvalue", "")
 					.addParameter("mvalue_method", this.mvalue_method.getText())
 					.addParameter("mcmc_sample", mcmc_sample.getText()).addParameter("seed", this.seed.getText())
 					.addParameter("mvalue_p_thres", this.mvalue_p_thres.getText())
@@ -203,8 +211,7 @@ public class MainController {
 					.addParameter("Mvalue", workingDirectory + secondOutputfile)
 					.addParameter("minGeneNumber", this.min_gene.getText())
 					.addParameter("Pdefault", workingDirectory + "p_ttest.txt").addParameter("out", out)
-					.addParameter("NICE", workingDirectory).setROutputFile(workingDirectory + "NICE.R")
-					.build();
+					.addParameter("NICE", workingDirectory).setROutputFile(workingDirectory + "NICE.R").build();
 			System.out.println(firstR);
 			System.out.println(firstJava);
 			System.out.println(secondR);
@@ -219,21 +226,30 @@ public class MainController {
 			System.out.println("Error: " + e.getMessage());
 		}
 	}
-	
+
 	private void runExecution() {
 		ProgramExecutor programExecutor = new ProgramExecutor(this);
-		programExecutor.setExecutionphase(i);
+		programExecutor.setExecutionphase(0);
 		programExecutor.start();
 	}
-	
+
 	public void setProgress(int i) {
-		
+	}
+
+	@FXML
+	private void runScript2() {
+
+	}
+
+	@FXML
+	private void runScript3() {
+
 	}
 
 	public void setStatusMessage(String statusMessage) {
-		
+
 	}
-	
+
 	private static String javaExe() {
 		final String JAVA_HOME = System.getProperty("java.home");
 		final File BIN = new File(JAVA_HOME, "bin");
