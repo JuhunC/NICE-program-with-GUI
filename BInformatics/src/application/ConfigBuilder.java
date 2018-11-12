@@ -38,7 +38,7 @@ public class ConfigBuilder {
 				this.exePathType = pathType.R;
 				return this;
 			} else {
-				throw new Exception("Excecutablepath already set");
+				throw new Exception("Excecutablepath already set ");
 			}
 		}
 
