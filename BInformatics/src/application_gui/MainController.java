@@ -90,7 +90,7 @@ public class MainController {
 	@FXML
 	ProgressBar progressbar = new ProgressBar();
 
-	public String workingDirectory;
+	public static String workingDirectory;
 	private ProgramExecutor programExecutor;
 
 	public MainController() {
@@ -180,11 +180,8 @@ public class MainController {
 	}
 
 
-	public StringPropertyBase messageProperty = new SimpleStringProperty("");
-	public DoublePropertyBase progressProperty = new SimpleDoubleProperty(0);
-
 	private void runExecution(int i) {
-		programExecutor = new ProgramExecutor(this, updateText, progressbar);
+		programExecutor = new ProgramExecutor(this, updateText, progressbar,checkbox);
 		programExecutor.setExecutionphase(i);
 		// updateText.textProperty().bind(messageProperty);
 		// progressbar.progressProperty().bind(progressProperty);
@@ -210,41 +207,40 @@ public class MainController {
 		// Buildconfig
 		try {
 			// provisoric:
-			String out = "./";
 			String msFilenameR = "inputMS.R";
 			String msFilenameTxt = "inputMS.txt";
 			String secondOutputfile = "posterior.txt";
 			workingDirectory = inputmspath.getText();
 
-			ConfigBuilder firstR = ConfigBuilder.builder().setRPath(rpath.getText())
+			ConfigBuilder firstR = ConfigBuilder.builder().setRPath("\""+rpath.getText()+"\"")
 					.addParameter("snp", snppath.getText()).addParameter("pheno", phenopath.getText())
-					.addParameter("out", out).setROutputFile(workingDirectory + msFilenameR).build();
+					.addParameter("out", workingDirectory).setROutputFile(workingDirectory + msFilenameR).build();
 			// todo: define mvalue, pvalue_table
-			ConfigBuilder firstJava = ConfigBuilder.builder().setJavaPath(javapath.getText())
-					.addParameter("input", workingDirectory + msFilenameTxt)
+			ConfigBuilder firstJava = ConfigBuilder.builder().setJavaPath("\""+javapath.getText()+"\"")
 					.addParameter("jar", workingDirectory + "Metasoft.jar").addParameter("mvalue", "")
+					.addParameter("input", workingDirectory + msFilenameTxt)
 					.addParameter("mvalue_method", this.mvalue_method.getText())
 					.addParameter("mcmc_sample", mcmc_sample.getText()).addParameter("seed", this.seed.getText())
 					.addParameter("mvalue_p_thres", this.mvalue_p_thres.getText())
 					.addParameter("mvalue_prior_sigma", this.mvalue_prior_sigma.getText())
 					.addParameter("mvalue_prior_beta", this.mvalue_prior_beta.getText())
 					.addParameter("pvalue_table", workingDirectory + "HanEskinPvalueTable.txt")
-					.addParameter("out", workingDirectory + secondOutputfile).build();
-			ConfigBuilder secondR = ConfigBuilder.builder().setRPath(rpath.getText())
+					.addParameter("output", workingDirectory + secondOutputfile).build();
+			ConfigBuilder secondR = ConfigBuilder.builder().setRPath("\""+rpath.getText()+"\"")
 					.addParameter("snp", snppath.getText()).addParameter("pheno", phenopath.getText())
 					.addParameter("MvalueThreshold", this.mvalue_threshold.getText())
 					.addParameter("Mvalue", workingDirectory + secondOutputfile)
 					.addParameter("minGeneNumber", this.min_gene.getText())
-					.addParameter("Pdefault", workingDirectory + "p_ttest.txt").addParameter("out", out)
+					.addParameter("Pdefault", workingDirectory + "p_ttest.txt").addParameter("out", workingDirectory)
 					.addParameter("NICE", workingDirectory).setROutputFile(workingDirectory + "NICE.R").build();
 			System.out.println(firstR);
 			System.out.println(firstJava);
 			System.out.println(secondR);
-			Files.write(Paths.get("outputconfig.sh"), (firstR.toString() + "\n").getBytes());
-			Files.write(Paths.get("outputconfig.sh"), (firstJava.toString() + "\n").getBytes(),
+			Files.write(Paths.get(workingDirectory+"outputconfig.sh"), (firstR.toString() + "\n").getBytes());
+			Files.write(Paths.get(workingDirectory+"outputconfig.sh"), (firstJava.toString() + "\n").getBytes(),
 					StandardOpenOption.APPEND);
-			Files.write(Paths.get("outputconfig.sh"), secondR.toString().getBytes(), StandardOpenOption.APPEND);
-
+			Files.write(Paths.get(workingDirectory+"outputconfig.sh"), secondR.toString().getBytes(), StandardOpenOption.APPEND);
+			updateText.setText("Config saved");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -254,7 +250,6 @@ public class MainController {
 	
 	@FXML
 	private void runScript1() {
-
 		runExecution(1);
 	}
 

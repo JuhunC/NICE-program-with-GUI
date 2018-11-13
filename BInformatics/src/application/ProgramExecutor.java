@@ -13,6 +13,7 @@ import javafx.beans.property.DoublePropertyBase;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringPropertyBase;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
@@ -25,14 +26,16 @@ public class ProgramExecutor extends Thread {
 	public String message = "";
 	public Label messageProperty;
 	public ProgressBar progressProperty;
+	public CheckBox checkBoxProperty;
 
 	public double progress;
 
-	public ProgramExecutor(MainController mainController, Label updateText,
-			ProgressBar progressbar) {
+	public ProgramExecutor(MainController mainController, Label updateText, ProgressBar progressbar,
+			CheckBox checkbox) {
 		this.mainController = mainController;
 		this.messageProperty = updateText;
 		this.progressProperty = progressbar;
+		this.checkBoxProperty = checkbox;
 	}
 
 	public ProgramExecutor() {
@@ -46,7 +49,9 @@ public class ProgramExecutor extends Thread {
 	public void run() {
 		Process p = null;
 		try {
-			this.executable = (String) Files.readAllLines(Paths.get("outputconfig.sh")).get(executionphase - 1);
+			this.executable = (String) Files
+					.readAllLines(Paths.get(MainController.workingDirectory + "outputconfig.sh"))
+					.get(executionphase - 1);
 			p = Runtime.getRuntime().exec(executable);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -75,16 +80,21 @@ public class ProgramExecutor extends Thread {
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-					messageProperty.setText("Program Stage " + executable + " not successful");
+					messageProperty.setText("Program Stage " + executionphase + " not successful");
+					checkBoxProperty.setSelected(false);
 				}
 			});
 		} else {
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-					messageProperty.setText("Program Stage " + executable + " successful");
+					messageProperty.setText("Program Stage " + executionphase + " successful");
 				}
 			});
+			if (checkBoxProperty.isSelected() && executionphase < 3) {
+				this.setExecutionphase(executionphase + 1);
+				this.run();
+			}
 		}
 	}
 
