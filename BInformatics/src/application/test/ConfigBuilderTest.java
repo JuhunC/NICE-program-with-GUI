@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -85,7 +86,7 @@ class ConfigBuilderTest {
 		String path = "E:\\Developement\\Korea\\Bioinformatics\\NICE\\NICE\\inputMS.Rout";
 		System.out.println("Workingdir: "+path);
 		List<String> readStatusLines = null;
-		readStatusLines = Files.readAllLines(Paths.get(path));
+		readStatusLines = Files.readAllLines(Paths.get(path),StandardCharsets.ISO_8859_1);
 	
 		if (!readStatusLines.isEmpty()) {
 		String progressString = "0";

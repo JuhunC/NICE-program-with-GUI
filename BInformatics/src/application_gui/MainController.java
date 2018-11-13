@@ -10,6 +10,11 @@ import javax.swing.JFileChooser;
 
 import application.ConfigBuilder;
 import application.ProgramExecutor;
+import javafx.application.Platform;
+import javafx.beans.property.DoublePropertyBase;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringPropertyBase;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -70,6 +75,8 @@ public class MainController {
 	@FXML
 	TextField mvalue_prior_beta = new TextField();
 	@FXML
+	Button runbtnConfigGen = new Button();
+	@FXML
 	Button runbtn1 = new Button();
 	@FXML
 	Button runbtn2 = new Button();
@@ -84,6 +91,7 @@ public class MainController {
 	ProgressBar progressbar = new ProgressBar();
 
 	public String workingDirectory;
+	private ProgramExecutor programExecutor;
 
 	public MainController() {
 	}
@@ -171,8 +179,20 @@ public class MainController {
 		// }
 	}
 
+
+	public StringPropertyBase messageProperty = new SimpleStringProperty("");
+	public DoublePropertyBase progressProperty = new SimpleDoubleProperty(0);
+
+	private void runExecution(int i) {
+		programExecutor = new ProgramExecutor(this, updateText, progressbar);
+		programExecutor.setExecutionphase(i);
+		// updateText.textProperty().bind(messageProperty);
+		// progressbar.progressProperty().bind(progressProperty);
+		programExecutor.start();
+	}
+
 	@FXML
-	private void runScript1() {
+	void runScriptConfigGen() {
 		// Gettext from these
 		/*
 		 * TextField rpath = new TextField(); TextField javapath = new TextField();
@@ -230,14 +250,14 @@ public class MainController {
 			e.printStackTrace();
 			System.out.println("Error: " + e.getMessage());
 		}
+	}
+	
+	@FXML
+	private void runScript1() {
+
 		runExecution(1);
 	}
 
-	private void runExecution(int i) {
-		ProgramExecutor programExecutor = new ProgramExecutor(this);
-		programExecutor.setExecutionphase(i);
-		programExecutor.start();
-	}
 
 	@FXML
 	private void runScript2() {
@@ -250,12 +270,9 @@ public class MainController {
 	}
 
 	public void setStatusMessage(String statusMessage) {
-		updateText.setText(statusMessage);
 	}
 
 	public void updateProgressBar(double d) {
-		// Must be between 0 and 1
-		progressbar.setProgress(d);
 	}
 
 	private static String javaExe() {
