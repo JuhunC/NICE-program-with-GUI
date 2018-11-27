@@ -16,11 +16,15 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringPropertyBase;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -104,6 +108,26 @@ public class MainController {
 	@FXML
 	private void configFileChooser() {
 		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+	}
+	@FXML
+	private void openHelp() {
+		Stage stage = new Stage();
+		Pane root = new Pane(); // Root of the scene graph
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(FxApp.class.getResource("Help.fxml"));
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		loader.setController(controller);
+		Scene scene = new Scene(root);
+		Image applicationIcon = new Image(getClass().getResourceAsStream("DNA-Helix-icon.png"));
+        stage.getIcons().add(applicationIcon);
+		stage.setScene(scene);	
+        stage.setTitle("Help");
+		stage.setResizable(false);
+		stage.show();
 	}
 
 	// Functions for choosing files
@@ -270,7 +294,7 @@ public class MainController {
 	public void updateProgressBar(double d) {
 	}
 
-	private static String javaExe() {
+	public static String javaExe() {
 		final String JAVA_HOME = System.getProperty("java.home");
 		final File BIN = new File(JAVA_HOME, "bin");
 		File exe = new File(BIN, "java");

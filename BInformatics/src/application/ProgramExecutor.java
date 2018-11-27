@@ -1,7 +1,6 @@
 package application;
 
 import java.io.IOException;
-import java.nio.charset.MalformedInputException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -9,10 +8,6 @@ import java.util.List;
 
 import application_gui.MainController;
 import javafx.application.Platform;
-import javafx.beans.property.DoublePropertyBase;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringPropertyBase;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -22,7 +17,6 @@ public class ProgramExecutor extends Thread {
 	private String executable = "";
 	private int executionphase = 0;
 	private MainController mainController = null;
-	private List<String> readAllLines;
 	public String message = "";
 	public Label messageProperty;
 	public ProgressBar progressProperty;

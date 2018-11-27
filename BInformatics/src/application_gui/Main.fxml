@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -11,8 +12,8 @@
    <children>
       <Button id="btn" fx:id="javapathbtn" layoutX="279.0" layoutY="21.0" mnemonicParsing="false" onAction="#chooseJavaPath" prefHeight="31.0" prefWidth="118.0" text="Choose Java path" />
       <TextField fx:id="javapath" layoutX="422.0" layoutY="21.0" prefHeight="23.0" prefWidth="392.0" text="default java path" />
-      <TextField fx:id="phenopath" layoutX="419.0" layoutY="209.0" prefHeight="23.0" prefWidth="392.0" />
-      <TextField fx:id="snppath" layoutX="419.0" layoutY="169.0" prefHeight="23.0" prefWidth="392.0" />
+      <TextField fx:id="phenopath" layoutX="429.0" layoutY="207.0" prefHeight="23.0" prefWidth="392.0" />
+      <TextField fx:id="snppath" layoutX="429.0" layoutY="167.0" prefHeight="23.0" prefWidth="392.0" />
       <TextField fx:id="rpath" layoutX="422.0" layoutY="68.0" prefHeight="23.0" prefWidth="392.0" text="default R path" />
       <Label layoutX="17.0" layoutY="25.0" text="java: path of java program" />
       <Label layoutX="17.0" layoutY="72.0" text="R: path of R program on your system" />
@@ -34,27 +35,27 @@
       <Label layoutX="14.0" layoutY="286.0" prefHeight="15.0" prefWidth="257.0" text=" Minimum number of genes (minimum 10) " />
       <Label layoutX="20.0" layoutY="313.0" text="Pvalue, only applicable when min_gene less than 10" />
       <Label layoutX="424.0" layoutY="286.0" text="mvalue_threshold (default 0.5)" />
-      <TextField fx:id="mvalue_threshold" layoutX="682.0" layoutY="282.0" prefHeight="23.0" prefWidth="131.0" text="0.5" />
+      <TextField fx:id="mvalue_threshold" layoutX="693.0" layoutY="281.0" prefHeight="23.0" prefWidth="131.0" text="0.5" />
       <Label layoutX="17.0" layoutY="350.0" text="Options for metasoft">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="mcmc_sample" layoutX="682.0" layoutY="374.0" prefHeight="23.0" prefWidth="131.0" text="1000000" />
+      <TextField fx:id="mcmc_sample" layoutX="693.0" layoutY="374.0" prefHeight="23.0" prefWidth="131.0" text="1000000" />
       <Label layoutX="424.0" layoutY="378.0" text="mcmc_sample: Default 1000000" />
       <Label layoutX="17.0" layoutY="378.0" prefHeight="15.0" prefWidth="257.0" text="mvalue_method: Default mcmc" />
       <TextField fx:id="mvalue_method" layoutX="280.0" layoutY="374.0" prefHeight="23.0" prefWidth="118.0" text="mcmc" />
-      <TextField fx:id="mvalue_p_thres" layoutX="682.0" layoutY="410.0" prefHeight="23.0" prefWidth="131.0" text="1.0" />
+      <TextField fx:id="mvalue_p_thres" layoutX="693.0" layoutY="410.0" prefHeight="23.0" prefWidth="131.0" text="1.0" />
       <Label layoutX="424.0" layoutY="414.0" text="mvalue_p_thres: Default 1.0" />
       <Label layoutX="14.0" layoutY="414.0" prefHeight="15.0" prefWidth="257.0" text="seed: Default 0" />
       <TextField fx:id="seed" layoutX="280.0" layoutY="410.0" prefHeight="23.0" prefWidth="118.0" text="0" />
-      <TextField fx:id="mvalue_prior_beta" layoutX="682.0" layoutY="445.0" prefHeight="23.0" prefWidth="131.0" text="1 5" />
+      <TextField fx:id="mvalue_prior_beta" layoutX="693.0" layoutY="445.0" prefHeight="23.0" prefWidth="131.0" text="1 5" />
       <Label layoutX="424.0" layoutY="449.0" text="mvalue_prior_beta: Default 1 5" />
       <Label layoutX="14.0" layoutY="449.0" prefHeight="15.0" prefWidth="257.0" text="mvalue_prior_sigma: Default 0.05" />
       <TextField fx:id="mvalue_prior_sigma" layoutX="280.0" layoutY="445.0" prefHeight="23.0" prefWidth="118.0" text="0.05" />
       <Button id="btn" fx:id="inputmspathbtn" layoutX="276.0" layoutY="244.0" mnemonicParsing="false" onAction="#chooseinputMSPath" prefHeight="23.0" prefWidth="117.0" text="Choose folder" />
       <Label layoutX="14.0" layoutY="249.0" text="Working Directory" />
-      <TextField fx:id="inputmspath" layoutX="419.0" layoutY="247.0" prefHeight="23.0" prefWidth="392.0" />
+      <TextField fx:id="inputmspath" layoutX="429.0" layoutY="245.0" prefHeight="23.0" prefWidth="392.0" />
       <Button fx:id="runbtn2" layoutX="529.0" layoutY="484.0" mnemonicParsing="false" onAction="#runScript2" prefHeight="66.0" prefWidth="131.0" text="Run second line">
          <font>
             <Font size="14.0" />
@@ -74,5 +75,10 @@
          </font>
       </Button>
       <Line endX="50.0" layoutX="314.0" layoutY="535.0" rotate="90.0" startX="-50.0" />
+      <Button layoutX="793.0" layoutY="621.0" mnemonicParsing="false" onAction="#openHelp" prefHeight="31.0" prefWidth="29.0" text="?" AnchorPane.topAnchor="621.0">
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
+      </Button>
    </children>
 </AnchorPane>

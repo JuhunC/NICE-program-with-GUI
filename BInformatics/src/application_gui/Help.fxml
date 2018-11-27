@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="759.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="39.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Java inpooot ur java pathTexteee" />
+      <Text layoutX="39.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Java inpooot ur java pathTexteee" />
+   </children>
+</AnchorPane>
