@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="759.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="793.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="39.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Java inpooot ur java pathTexteee" />
-      <Text layoutX="39.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Java inpooot ur java pathTexteee" />
+      <Text layoutX="17.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you are running NICE with small memory or your data is huge, we recommend you to separate SNPs and run each in parallel in a cluster for higher computational efficiency." wrappingWidth="718.6796875" />
+      <Text layoutX="17.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Developed in R version 2.15.1 and java OpenJDK Runtime Environment rhel-2.4.7.1" />
+      <Text layoutX="14.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Documentation">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text layoutX="17.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="System requirements">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Line endX="600.0" layoutX="118.0" layoutY="164.0" startX="-100.0" strokeWidth="2.0" />
+      <Text layoutX="17.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you haven’t download it yet, get the NICE.zip from:" />
+      <Hyperlink layoutX="13.0" layoutY="200.0" text="http://genetics.cs.ucla.edu/nice_jemdoc/" />
+      <Text layoutX="13.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please provide each option in the program">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="17.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- java: path of java program on your system" wrappingWidth="313.19140625" />
+      <Text layoutX="17.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- R: path of R program on your system" wrappingWidth="313.19140625" />
+      <Text layoutX="17.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- snp: path of SNP file. It should be a sample by snp matrix" wrappingWidth="447.19140625" />
+      <Text layoutX="17.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- pheno: path pf phenotype file. It should be a sample by phenotype matrix" wrappingWidth="614.19140625" />
+      <Text layoutX="21.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- pvalue: Default pvalue to be used when NICE is not applicable. For example, if the number of genes that assumes to have only confounding effects but not genetic effects is less than 10, NICE uses the default p-value for the snp. You can use p-value from the standard ttest using the t_test_static in the NICE package." wrappingWidth="736.19140625" />
+      <Text layoutX="17.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- min_gene: Minimum number of genes that have only confounding effects but not genetic effects. Default is 10 and minimum is 10." wrappingWidth="483.19140625" />
+      <Text layoutX="17.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Working directory: This should be the NICE folder from NICE.zip" wrappingWidth="504.19140625" />
+      <Text layoutX="27.0" layoutY="566.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-mcmc_sample: Default 1000000" wrappingWidth="313.19140625" />
+      <Text layoutX="27.0" layoutY="545.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-mvalue_method: Default mcmc" wrappingWidth="313.19140625" />
+      <Text layoutX="25.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Below options are for running the MetaSoft. For the details please visit METASOFT" wrappingWidth="727.19140625" />
+      <Text layoutX="21.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- mvalue_threshold: Threshold for selecting genes that have only confounding effects but not genetic effects. Default is 0.5" wrappingWidth="736.19140625" />
+      <Line endX="600.0" layoutX="118.0" layoutY="744.0" startX="-100.0" strokeWidth="2.0" />
+      <Text layoutX="27.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-seed: Default 0" wrappingWidth="313.19140625" />
+      <Text layoutX="27.0" layoutY="608.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-mvalue_p_thres: Default 1.0" wrappingWidth="313.19140625" />
+      <Text layoutX="27.0" layoutY="629.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-mvalue_prior_sigma: Default 0.05" wrappingWidth="313.19140625" />
+      <Text layoutX="27.0" layoutY="650.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-mvalue_prior_beta: Default 1 5" wrappingWidth="313.19140625" />
+      <Label layoutX="17.0" layoutY="758.0" text="For more sophisticated options with different context of eQTL mapping, please contact Jong Wha J Jool" />
+      <Label layoutX="27.0" layoutY="684.0" text="The outputted files will be stored in the working directory" />
    </children>
 </AnchorPane>
